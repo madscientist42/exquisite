@@ -9,3 +9,5 @@ cmake_install.cmake
 exquisite
 libExquisite.so
 exquisite_write
+install_manifest.txt
+Makefile

@@ -1,7 +1,7 @@
 COMPILING and INSTALLING:
 
-If you got a official release tar archive do:
-    ./configure
+If you got a official release tar archive or a git repository pull do:
+    cmake .
     
 Then to compile:
     make

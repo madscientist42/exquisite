@@ -50,4 +50,6 @@ target_link_libraries(exquisite_write Exquisite
     ${ECORE_LIBRARIES} 
     ${ECORE_CON_LIBRARIES})
 
+install(TARGETS exquisite exquisite_write DESTINATION bin)
+install(TARGETS Exquisite DESTINATION lib)
 
