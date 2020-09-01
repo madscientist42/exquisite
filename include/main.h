@@ -21,6 +21,11 @@
 #include <Ecore_Fb.h>
 #endif
 
+// FIXME - HACKERY for things, this would be a SIN by the E bunch, to be honest...
+#define PACKAGE_BIN_DIR "/usr/bin"
+#define PACKAGE_LIB_DIR "/usr/lib"
+#define PACKAGE_DATA_DIR "/usr/share"
+
 #include "ipc.h"
 
 extern Eina_Prefix *pfx;

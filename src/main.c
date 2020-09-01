@@ -110,7 +110,8 @@ _args(void)
    char **argv;
    char buf[PATH_MAX];
    int i;
-   
+   Ecore_Evas *ee;
+
    int w = 640;
    int h = 480;
    double fps = 60.0;
@@ -224,20 +225,34 @@ _args(void)
 	  }
      }
 
-   if (engine == SOFT_X)
-     ee = ecore_evas_software_x11_new(NULL, 0, 0, 0, w, h);
-   else if (engine == GL_X)
-     ee = ecore_evas_gl_x11_new(NULL, 0, 0, 0, w, h);
-   else if (engine == FB)
-     {
-        ee = ecore_evas_fb_new(NULL, rot, w, h);
-#ifdef HAVE_ECORE_FB
-        /* exit on first vt switch away */
-        ecore_fb_callback_lose_set(_cb_fb_lose, NULL);
-#endif        
-     }
-   else if (engine == XRENDER_X)
-     ee = ecore_evas_xrender_x11_new(NULL, 0, 0, 0, w, h);
+  switch (engine) 
+  {
+    case SOFT_X: 
+      ee = ecore_evas_software_x11_new(NULL, 0, 0, 0, w, h);
+      break;
+    
+    case GL_X:
+      ee = ecore_evas_gl_x11_new(NULL, 0, 0, 0, w, h);
+      break;
+
+    case FB:
+      ee = ecore_evas_fb_new(NULL, rot, w, h);
+      #ifdef HAVE_ECORE_FB
+      /* exit on first vt switch away */
+      ecore_fb_callback_lose_set(_cb_fb_lose, NULL);
+      #endif
+      break;
+
+    case XRENDER_X:
+      ee = ecore_evas_xrender_x11_new(NULL, 0, 0, 0, w, h);
+      break;
+
+    default:
+      ee = NULL;
+      break;
+  }
+
+
    if (!ee)
      {
 	printf("Error. Cannot create canvas. Abort.\n");
