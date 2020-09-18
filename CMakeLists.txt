@@ -10,6 +10,11 @@ find_package(Ecore COMPONENTS con)
 find_package(Edje REQUIRED)
 find_package(Efreet REQUIRED)
 
+# Define an option to build the theme in the CMake build.  This is
+# to allow someone with a local build on a target machine to test/play
+# with the theme in the theme/ directory using the demo script.
+option(BUILD_THEME "Build the theme config for the demo" OFF)
+
 # Set the destination for local builds so we can actually run the demo
 # by hand...
 set(CMAKE_BINARY_DIR "bin")
@@ -55,10 +60,11 @@ target_link_libraries(exquisite_write Exquisite
 
 # Add a builder for the theme so that someone can run the demo in the source
 # tree as needed...
-add_custom_command(OUTPUT theme/default.edj
-    COMMAND theme/default.edj edje_cc -fd theme/fonts -id theme/images theme/default.edc theme/default.edj
-    DEPENDS theme/default.edc
-    )
+if (BUILD_THEME)
+    add_custom_command(OUTPUT ${CMAKE_BINARY_DIR}/default.edj
+        COMMAND edje_cc -fd ${CMAKE_SOURCE_DIR}/theme/fonts -id ${CMAKE_SOURCE_DIR}/theme/images ${CMAKE_SOURCE_DIR}/theme/default.edc ${CMAKE_BINARY_DIR}/default.edj
+        DEPENDS ${CMAKE_SOURCE_DIR}/theme/default.edc)
+endif()
 
 install(TARGETS exquisite exquisite_write DESTINATION bin)
 install(TARGETS Exquisite DESTINATION lib)

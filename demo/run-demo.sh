@@ -5,11 +5,10 @@ MAIN="../bin/exquisite -verbose"
 WRITE="../bin/exquisite-write"
 
 # start up gui - some examples here for different resolutions and the fb
-#$MAIN -t ~/C/SVN/THEMES/b_and_w/exquisite-ang.edj -x 480 -y 640 &
-$MAIN -t ../theme/default.edj -x 480 -y 640 -cleanvt &
-#$MAIN -t ../theme/default.edj -x 640 -y 480 &
-#$MAIN -t ../themedefault.edj -x 240 -y 320 &
-#$MAIN -t ../theme/default.edj -x 1280 -y 1024 &
+$MAIN -t ../bin/default.edj -x 480 -y 640 -cleanvt &
+#$MAIN -t ../bin/default.edj -x 640 -y 480 &
+#$MAIN -t ../bin/default.edj -x 240 -y 320 &
+#$MAIN -t ../bin/default.edj -x 1280 -y 1024 &
 #$MAIN -fb -fs
 # run 'exquisite -h' for more options
 echo "I: waiting up to 30 secs for exquisite..."
