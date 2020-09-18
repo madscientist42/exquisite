@@ -31,7 +31,7 @@ Compiling:
 
 Once you have met requirements, compiling and installing is simple:
 
-  ./configure
+  cmake .
   make
   make install
 
@@ -42,7 +42,9 @@ There is a demo included in the demo/ directory:
 
 As a very basic sample of what can be done - will run by default in X11 in a
 window and is a great way to test themes etc. Read run-demo.sh for some more
-details on commands used.
+details on commands used.  In order to run it, you will have to build the
+theme manually or turn on the CMake option BUILD_THEME before building to
+be able to run the demo.  The theme is a typical EDC bundle spec file.
 
 So how does this work?
 ----------------------
@@ -99,7 +101,7 @@ Some example command-lines you may want:
   exquisite -fb -fs -t ubuntu
   exquisite -fb -fs -t openmkoko -fps 15
   exquisite -fb -fs -t /boot/fedora.edj -fps 60
-  
+
 Remember that exquisite won't detech from the shell - and it doesn't write a
 PID file - there is no need because you can communicate via exquisite-write.
 
@@ -126,7 +128,7 @@ These commands are extended (themes may or may not support them):
 
 exquisite-write END
   This asks Exquisite to exit "nicely". Exquisite in turn asks the theme to
-  shut down. This may be animated and take some period of time. The 
+  shut down. This may be animated and take some period of time. The
   exquisite-write command will not return until the shut down has finished.
 exquisite-write TITLE X
   Tell Exquisite to display a title of "X" on the screen.
